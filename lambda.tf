@@ -36,5 +36,3 @@ resource "aws_lambda_function" "cloudfront_auth_edge" {
 
   skip_destroy = true
 }
-
-

@@ -9,6 +9,7 @@ const { getLogger } = require('./logger');
 // Global Static variables
 const cacheAuthenticatorKey = "AUTHENTICATOR_OBJECT";
 const POLICY_NAME = "SSM_PARAMETER_PERMISSION_FOR_LAMBDA_AUTH";
+const AWS_REGION = "us-east-1"
 
 const cache = new NodeCache({
   stdTTL: 300,
@@ -50,9 +51,9 @@ async function createAuthenticatorFromConfiguration() {
   const rootLogger = getLogger();
 
   try {
-    const ssmClient = new SSMClient({ region: 'us-east-1' });
-    const stsClient = new STSClient({ region: 'us-east-1' });
-    const iamClient = new IAMClient({ region: 'us-east-1' });
+    const ssmClient = new SSMClient({ region: AWS_REGION });
+    const stsClient = new STSClient({ region: AWS_REGION });
+    const iamClient = new IAMClient({ region: AWS_REGION });
 
     // Get the IAM role that is currently running this lambda.
     rootLogger.info('Attempting to get current execution IAM Role.');
